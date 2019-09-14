@@ -6,4 +6,10 @@
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<bean id="bookRepository" class="it.discovery.repository.DBBookRepository" />
+
+	<bean id="bookService" class="it.discovery.service.MainBookService" >
+		<constructor-arg ref="bookRepository" />
+	</bean>
+
 </beans>
