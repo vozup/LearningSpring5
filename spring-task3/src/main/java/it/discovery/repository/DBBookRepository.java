@@ -26,8 +26,6 @@ public class DBBookRepository implements BookRepository {
 		System.out.println("Started db repository with server:" + server + " and database: " + db );
 	}
 
-    //Calling automatic
-
     /**
      * @func shutdown() or close() spring calling automatic
      */
