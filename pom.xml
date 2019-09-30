@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.discovery</groupId>
+	<groupId>it.it.discovery</groupId>
 	<artifactId>spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -75,6 +75,7 @@
 		<module>spring-task1</module>
 		<module>spring-task2</module>
 		<module>spring-task3</module>
+		<module>spring-task4</module>
 	</modules>
 
 	<repositories>
