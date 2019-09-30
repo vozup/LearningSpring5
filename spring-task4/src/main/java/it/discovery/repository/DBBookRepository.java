@@ -18,15 +18,15 @@ public class DBBookRepository implements BookRepository {
 
     private int counter = 0;
 
+    private String server;
+
     //If value db.jdbc.url is absent in property file
     //value localhost is default
     @Value("${db.jdbc.url:localhost}")
-    private String server;
-
     private String db = "library";
 
     public void init() {
-        System.out.println("Started db repository with server:" + server + " and database: " + db);
+        System.out.println("Init method in DB bean");
     }
 
     /**
