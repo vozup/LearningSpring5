@@ -2,6 +2,7 @@ package it.discovery.repository;
 
 import it.discovery.model.Book;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,8 +54,20 @@ public class DBBookRepository implements BookRepository {
         System.out.println("Saved book " + book + " to DB");
     }
 
+    // Don't do this at home
+    private void simulateSlowService() {
+        try {
+            long time = 3000L;
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
     @Override
+    @Cacheable("books")
     public Book findBookById(int id) {
+        simulateSlowService();
         return books.get(id);
     }
 

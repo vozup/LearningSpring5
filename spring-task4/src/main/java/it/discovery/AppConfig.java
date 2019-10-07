@@ -7,15 +7,21 @@ import it.discovery.service.BookService;
 import it.discovery.service.MainBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 
 @Configuration
 @PropertySource("application.properties")
+@EnableCaching
 public class AppConfig {
     @Autowired
     private Environment env;
@@ -35,6 +41,14 @@ public class AppConfig {
         System.out.println(jdbc + " " + count);
     }
 
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Collections.singletonList(
+                new ConcurrentMapCache("books")));
+        return cacheManager;
+    }
+
     @Bean(name = "dbBookRepo", initMethod = "init")
     public BookRepository dbBookRepository() {
         DBBookRepository repository = new DBBookRepository();
@@ -50,7 +64,7 @@ public class AppConfig {
     }
 
     @Bean
-    public BookService mainBookService(BookRepository xmlBookRepository) {
-        return new MainBookService(xmlBookRepository);
+    public BookService mainBookService(BookRepository dbBookRepo) {
+        return new MainBookService(dbBookRepo);
     }
 }

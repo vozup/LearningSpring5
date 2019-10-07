@@ -10,4 +10,6 @@ public interface BookService {
     public Book findBookById(int id);
 
     public List<Book> findBooks();
+
+    public void resetCache();
 }

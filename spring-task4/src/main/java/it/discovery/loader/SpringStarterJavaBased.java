@@ -8,19 +8,31 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class SpringStarterJavaBased {
+    private static final Logger logger = Logger.getLogger(SpringStarterJavaBased.class.toString());
+
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext context =
                      new AnnotationConfigApplicationContext(AppConfig.class)) {
             BookService service = context.getBean(BookService.class);
 
-            Book book = new Book();
-            book.setName("Introduction into Spring");
-            book.setPages(100);
-            book.setYear(2016);
-            service.saveBook(book);
+            for (int i = 1; i < 10; i++) {
+                service.saveBook(new Book(i, "Name-" + i, 1993 + i, 100 + i));
+            }
+
+
+            logger.info(service.findBookById(1).getName());
+            logger.info(service.findBookById(1).getName());
+            logger.info(service.findBookById(1).getName());
+            logger.info(service.findBookById(2).getName());
+            service.resetCache();
+            service.saveBook(new Book(2, "Name-222", 1995, 120));
+            logger.info(service.findBookById(2).getName());
+            logger.info(service.findBookById(1).getName());
+            logger.info(service.findBookById(1).getName());
 
             List<Book> books = service.findBooks();
             System.out.println(books);

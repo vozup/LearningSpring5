@@ -2,6 +2,7 @@ package it.discovery.service;
 
 import it.discovery.model.Book;
 import it.discovery.repository.BookRepository;
+import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.List;
 
@@ -25,5 +26,11 @@ public class MainBookService implements BookService {
     @Override
     public List<Book> findBooks() {
         return repository.findBooks();
+    }
+
+    @Override
+    @CacheEvict(value = "books", allEntries = true)
+    public void resetCache() {
+        System.out.println("Cache cleared");
     }
 }
