@@ -26,4 +26,9 @@ public class MainBookService implements BookService {
     public List<Book> findBooks() {
         return repository.findBooks();
     }
+
+    @Override
+    public void saveAllBooks(Book savedBooks[]) {
+        repository.saveAllBooks(savedBooks);
+    }
 }

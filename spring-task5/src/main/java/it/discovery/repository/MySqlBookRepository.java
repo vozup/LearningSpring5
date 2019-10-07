@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author morenets
  */
-public class DBBookRepository implements BookRepository {
+public class MySqlBookRepository implements BookRepository {
     private final Map<Integer, Book> books = new HashMap<>();
 
     private int counter = 0;
@@ -22,7 +22,7 @@ public class DBBookRepository implements BookRepository {
     private String db = "library";
 
     public void init() {
-        System.out.println("Started db repository with server:" + server + " and database: " + db);
+        System.out.println("Started MySQL DB repository with server:" + server + " and database: " + db);
     }
 
     /**
@@ -46,7 +46,14 @@ public class DBBookRepository implements BookRepository {
 
         books.put(book.getId(), book);
 
-        System.out.println("Saved book " + book + " to DB");
+        System.out.println("Saved book " + book + " to MySQL DB");
+    }
+
+    @Override
+    public void saveAllBooks(Book savedBooks[]) {
+        for (Book b : savedBooks) {
+            books.put(b.getId(), b);
+        }
     }
 
     @Override

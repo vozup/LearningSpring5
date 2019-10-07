@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author morenets
  */
-public class XmlBookRepository implements BookRepository {
+public class OracleBookRepository implements BookRepository {
     private final Map<Integer, Book> books = new HashMap<>();
 
     private int counter = 0;
@@ -22,12 +22,20 @@ public class XmlBookRepository implements BookRepository {
     private String db = "library";
 
     public void init() {
-        System.out.println("Started xml repository with server:" + server + " and database: " + db);
+        System.out.println("Started Oracle db repository with server:" + server + " and database: " + db);
     }
 
-    public void destroy() {
+    /**
+     * @func shutdown() or close() spring calling automatic
+     */
+    public void shutdown() {
         System.out.println("Shutting down repository ... ");
     }
+
+    //...
+    //public void close() {
+    //    System.out.println("Closing repository ... ");
+    //}
 
     @Override
     public void saveBook(Book book) {
@@ -38,7 +46,14 @@ public class XmlBookRepository implements BookRepository {
 
         books.put(book.getId(), book);
 
-        System.out.println("Saved book " + book + " to XML");
+        System.out.println("Saved book " + book + " to Oracle DB");
+    }
+
+    @Override
+    public void saveAllBooks(Book savedBooks[]) {
+        for (Book b : savedBooks) {
+            books.put(b.getId(), b);
+        }
     }
 
     @Override
