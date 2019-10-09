@@ -1,6 +1,7 @@
 package it.discovery.repository;
 
 import it.discovery.model.Book;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class OracleBookRepository implements BookRepository {
     //}
 
     @Override
+    @Async
     public void saveBook(Book book) {
         System.out.println("Current thread: " + Thread.currentThread().getName());
         if (book.getId() == 0) {

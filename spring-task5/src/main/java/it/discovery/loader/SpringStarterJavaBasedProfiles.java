@@ -26,6 +26,13 @@ public class SpringStarterJavaBasedProfiles {
             service.saveAllBooks(BookUtils.getRandomBooks(10).toArray(Book[]::new));
             service.saveBook(BookUtils.getOneRandomBook());
 
+            service.findBookById(1).whenComplete(((book, throwable) -> {
+                System.out.println("finded book: " + book);
+                if (throwable != null) {
+                    throwable.printStackTrace();
+                }
+            }));
+
             List<Book> books = service.findBooks();
             System.out.println(books);
 
