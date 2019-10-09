@@ -39,6 +39,7 @@ public class MySqlBookRepository implements BookRepository {
 
     @Override
     public void saveBook(Book book) {
+        System.out.println("Current thread: " + Thread.currentThread().getName());
         if (book.getId() == 0) {
             counter++;
             book.setId(counter);

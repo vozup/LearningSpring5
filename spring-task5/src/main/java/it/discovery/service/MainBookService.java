@@ -2,6 +2,7 @@ package it.discovery.service;
 
 import it.discovery.model.Book;
 import it.discovery.repository.BookRepository;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class MainBookService implements BookService {
     }
 
     @Override
+    @Async
     public void saveBook(Book book) {
         repository.saveBook(book);
     }

@@ -24,6 +24,7 @@ public class SpringStarterJavaBasedProfiles {
             BookService service = context.getBean(BookService.class);
 
             service.saveAllBooks(BookUtils.getRandomBooks(10).toArray(Book[]::new));
+            service.saveBook(BookUtils.getOneRandomBook());
 
             List<Book> books = service.findBooks();
             System.out.println(books);
@@ -31,9 +32,9 @@ public class SpringStarterJavaBasedProfiles {
             System.out.println("Beans number: " + context.getBeanDefinitionCount());
             System.out.println("BookRepository beans: " +
                     Arrays.stream(context.getBeanNamesForType(BookRepository.class))
-                            .collect(Collectors.joining(",")));
+                            .collect(Collectors.joining("\n")));
             System.out.println("Bean names: " + Arrays.stream(
-                    context.getBeanDefinitionNames()).collect(Collectors.joining(",")));
+                    context.getBeanDefinitionNames()).collect(Collectors.joining("\n")));
         }
 
     }

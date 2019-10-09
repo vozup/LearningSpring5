@@ -9,9 +9,11 @@ import it.discovery.service.MainBookService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
 @PropertySource("application.properties")
+@EnableAsync
 public class AppConfig {
 
     @Bean
