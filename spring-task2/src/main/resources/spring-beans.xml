@@ -7,10 +7,10 @@
 http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="bookRepository" class="it.it.it.discovery.repository.OracleBookRepository"
+    <bean id="bookRepository" class="it.it.it.it.discovery.repository.OracleBookRepository"
           init-method="init" destroy-method="destroy"/>
 
-    <bean id="bookService" class="it.it.it.discovery.service.MainBookService"/>
+    <bean id="bookService" class="it.it.it.it.discovery.service.MainBookService"/>
 
     <context:annotation-config />
 

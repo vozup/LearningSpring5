@@ -4,7 +4,7 @@ plugins {
 }
 
 allprojects {
-    group = "it.discovery"
+    group = "it.it.discovery"
 }
 
 subprojects {  
