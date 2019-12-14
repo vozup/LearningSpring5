@@ -78,7 +78,8 @@
 		<module>spring-task4</module>
         <module>spring-task5</module>
 		<module>spring-task6</module>
-	</modules>
+        <module>spring-task7</module>
+    </modules>
 
 	<repositories>
 		<repository>
