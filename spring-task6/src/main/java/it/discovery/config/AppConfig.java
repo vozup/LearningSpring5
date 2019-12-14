@@ -1,5 +1,7 @@
 package it.discovery.config;
 
+import it.discovery.bpp.InitBeanPostProcessor;
+import it.discovery.bpp.MyBean;
 import it.discovery.logger.EventBus;
 import it.discovery.logger.FileLogger;
 import it.discovery.logger.InMemoryLogger;
@@ -10,6 +12,7 @@ import it.discovery.repository.OracleBookRepository;
 import it.discovery.service.BookService;
 import it.discovery.service.MainBookService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,7 +54,7 @@ public class AppConfig {
         }
 
         @Bean
-        @Order(Ordered.LOWEST_PRECEDENCE)
+        @Order
         public Logger fileLogger() {
             return new FileLogger();
         }
@@ -60,6 +63,19 @@ public class AppConfig {
         @Order(Ordered.HIGHEST_PRECEDENCE)
         public Logger inMemoryLogger() {
             return new InMemoryLogger();
+        }
+    }
+
+    @Configuration
+    public class BeanPostProcessorConfig {
+        @Bean
+        public BeanPostProcessor initBeanPostProcessor() {
+            return new InitBeanPostProcessor();
+        }
+
+        @Bean
+        public MyBean myBean() {
+            return new MyBean();
         }
     }
 }
